@@ -30,7 +30,7 @@ namespace dictionary_dotnet
                     name = Console.ReadLine();
                 }
             }
-            // Problem 2
+            // Problem 2 - Lookup
 
             var lookup = name;
             while (name == lookup)
