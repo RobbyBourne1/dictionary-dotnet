@@ -35,17 +35,43 @@ namespace dictionary_dotnet
             var lookup = name;
             while (name == lookup)
             {
-               Console.WriteLine($"LookUp {lookup}");
-               lookup = Console.ReadLine();
-               foreach (var item in myDict)
-               {
-                   if (item.Key == lookup)
-                   {
-                       Console.WriteLine(item.Key);
-                       Console.WriteLine(item.Value);
-                   }
-               } 
+                Console.WriteLine($"LookUp {lookup}");
+                lookup = Console.ReadLine();
+                foreach (var item in myDict)
+                {
+                    if (item.Key == lookup)
+                    {
+                        Console.WriteLine(item.Key);
+                        Console.WriteLine(item.Value);
+                    }
+                }
             }
+            string s = "abcabcabcdefab c a oo ija ;a ;skmdals kn";
+            Console.WriteLine(letterCount(s)['b'] == 4);
+            Console.WriteLine(letterCount(s).ContainsKey('z') == false);
+            Console.WriteLine(letterCount(s).ContainsKey(' ') == false);
+        }
+
+        //Part 3 (LetterCount Function) 
+        public static Dictionary<char, int> letterCount(string s)
+        {
+            var lowCase = Regex.Replace(s, @"\s+", "");
+
+            lowCase.ToLower().ToCharArray();
+            var charDictionary = new Dictionary<char, int>();
+            foreach (var item in lowCase)
+            {
+                int count = lowCase.Where(c => c == item).Count();
+                if (charDictionary.ContainsKey(item) == false)
+                {
+                    charDictionary.Add(item, count);
+                }
+            }
+            foreach (var item in charDictionary)
+            {
+                Console.WriteLine($"Key: {item.Key}, Value: {item.Value}");
+            }
+            return charDictionary;
         }
     }
 }
